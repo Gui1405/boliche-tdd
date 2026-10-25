@@ -70,11 +70,15 @@ class JogoTest {
         assertEquals(300, jogo.pontuacao());
     }
 
-    @Test
-    void partidaMistaVale167() {
-        for (int pinos : new int[] { 10, 7, 3, 9, 0, 10, 0, 8, 8, 2, 0, 6, 10, 10, 10, 8, 1 }) {
+    private void jogarSequencia(int... sequencia) {
+        for (int pinos : sequencia) {
             jogo.jogar(pinos);
         }
+    }
+
+    @Test
+    void partidaMistaVale167() {
+        jogarSequencia(10, 7, 3, 9, 0, 10, 0, 8, 8, 2, 0, 6, 10, 10, 10, 8, 1);
         assertEquals(167, jogo.pontuacao());
     }
 }
