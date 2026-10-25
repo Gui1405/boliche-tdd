@@ -63,4 +63,10 @@ class JogoTest {
         jogarVarias(21, 5);
         assertEquals(150, jogo.pontuacao());
     }
+
+    @Test
+    void jogoPerfeitoVale300() {
+        jogarVarias(12, 10);
+        assertEquals(300, jogo.pontuacao());
+    }
 }
