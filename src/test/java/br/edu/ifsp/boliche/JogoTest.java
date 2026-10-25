@@ -14,4 +14,13 @@ class JogoTest {
         }
         assertEquals(0, jogo.pontuacao());
     }
+
+    @Test
+    void umPinoPorJogadaValeVinte() {
+        Jogo jogo = new Jogo();
+        for (int i = 0; i < 20; i++) {
+            jogo.jogar(1);
+        }
+        assertEquals(20, jogo.pontuacao());
+    }
 }
