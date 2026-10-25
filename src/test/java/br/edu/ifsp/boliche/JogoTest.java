@@ -87,4 +87,9 @@ class JogoTest {
     void jogadaNegativaLancaExcecao() {
         assertThrows(IllegalArgumentException.class, () -> jogo.jogar(-1));
     }
+
+    @Test
+    void jogadaComMaisDeDezPinosLancaExcecao() {
+        assertThrows(IllegalArgumentException.class, () -> jogo.jogar(11));
+    }
 }
