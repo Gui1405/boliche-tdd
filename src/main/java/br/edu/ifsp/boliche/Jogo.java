@@ -7,12 +7,23 @@ public class Jogo {
 
     private final int[] jogadas = new int[21];
     private int atual;
+    private int pinosNoFrame;
+    private int jogadasNoFrame;
 
     public void jogar(int pinos) {
         if (pinos < 0 || pinos > PINOS) {
             throw new IllegalArgumentException("Jogada inválida: " + pinos + " pinos");
         }
+        if (pinosNoFrame + pinos > PINOS) {
+            throw new IllegalArgumentException("O frame passaria de " + PINOS + " pinos");
+        }
         jogadas[atual++] = pinos;
+        pinosNoFrame += pinos;
+        jogadasNoFrame++;
+        if (pinosNoFrame == PINOS || jogadasNoFrame == 2) {
+            pinosNoFrame = 0;
+            jogadasNoFrame = 0;
+        }
     }
 
     public int pontuacao() {
