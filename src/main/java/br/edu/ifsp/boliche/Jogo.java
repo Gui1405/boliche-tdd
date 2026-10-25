@@ -11,19 +11,27 @@ public class Jogo {
     private int jogadasNoFrame;
 
     public void jogar(int pinos) {
+        validar(pinos);
+        jogadas[atual++] = pinos;
+        pinosNoFrame += pinos;
+        jogadasNoFrame++;
+        if (pinosNoFrame == PINOS || jogadasNoFrame == 2) {
+            proximoFrame();
+        }
+    }
+
+    private void validar(int pinos) {
         if (pinos < 0 || pinos > PINOS) {
             throw new IllegalArgumentException("Jogada inválida: " + pinos + " pinos");
         }
         if (pinosNoFrame + pinos > PINOS) {
             throw new IllegalArgumentException("O frame passaria de " + PINOS + " pinos");
         }
-        jogadas[atual++] = pinos;
-        pinosNoFrame += pinos;
-        jogadasNoFrame++;
-        if (pinosNoFrame == PINOS || jogadasNoFrame == 2) {
-            pinosNoFrame = 0;
-            jogadasNoFrame = 0;
-        }
+    }
+
+    private void proximoFrame() {
+        pinosNoFrame = 0;
+        jogadasNoFrame = 0;
     }
 
     public int pontuacao() {
