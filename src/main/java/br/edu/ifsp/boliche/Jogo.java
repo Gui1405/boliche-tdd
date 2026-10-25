@@ -22,6 +22,9 @@ public class Jogo {
     }
 
     private void validar(int pinos) {
+        if (encerrado()) {
+            throw new IllegalStateException("A partida já terminou");
+        }
         if (pinos < 0 || pinos > PINOS) {
             throw new IllegalArgumentException("Jogada inválida: " + pinos + " pinos");
         }
