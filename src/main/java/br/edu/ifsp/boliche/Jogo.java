@@ -13,12 +13,16 @@ public class Jogo {
         int pontos = 0;
         int inicioDoFrame = 0;
         for (int frame = 0; frame < 10; frame++) {
-            if (spare(inicioDoFrame)) {
+            if (jogadas[inicioDoFrame] == 10) {
+                pontos += 10 + jogadas[inicioDoFrame + 1] + jogadas[inicioDoFrame + 2];
+                inicioDoFrame++;
+            } else if (spare(inicioDoFrame)) {
                 pontos += 10 + jogadas[inicioDoFrame + 2];
+                inicioDoFrame += 2;
             } else {
                 pontos += jogadas[inicioDoFrame] + jogadas[inicioDoFrame + 1];
+                inicioDoFrame += 2;
             }
-            inicioDoFrame += 2;
         }
         return pontos;
     }
