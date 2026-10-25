@@ -45,9 +45,13 @@ class JogoTest {
         assertEquals(16, jogo.pontuacao());
     }
 
+    private void jogarStrike() {
+        jogo.jogar(10);
+    }
+
     @Test
     void strikeValeDezMaisAsDuasProximasJogadas() {
-        jogo.jogar(10);
+        jogarStrike();
         jogo.jogar(3);
         jogo.jogar(4);
         jogarVarias(16, 0);

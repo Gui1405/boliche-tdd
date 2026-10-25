@@ -2,6 +2,9 @@ package br.edu.ifsp.boliche;
 
 public class Jogo {
 
+    private static final int PINOS = 10;
+    private static final int FRAMES = 10;
+
     private final int[] jogadas = new int[20];
     private int atual;
 
@@ -12,22 +15,38 @@ public class Jogo {
     public int pontuacao() {
         int pontos = 0;
         int inicioDoFrame = 0;
-        for (int frame = 0; frame < 10; frame++) {
-            if (jogadas[inicioDoFrame] == 10) {
-                pontos += 10 + jogadas[inicioDoFrame + 1] + jogadas[inicioDoFrame + 2];
+        for (int frame = 0; frame < FRAMES; frame++) {
+            if (strike(inicioDoFrame)) {
+                pontos += PINOS + bonusDoStrike(inicioDoFrame);
                 inicioDoFrame++;
             } else if (spare(inicioDoFrame)) {
-                pontos += 10 + jogadas[inicioDoFrame + 2];
+                pontos += PINOS + bonusDoSpare(inicioDoFrame);
                 inicioDoFrame += 2;
             } else {
-                pontos += jogadas[inicioDoFrame] + jogadas[inicioDoFrame + 1];
+                pontos += somaDoFrame(inicioDoFrame);
                 inicioDoFrame += 2;
             }
         }
         return pontos;
     }
 
+    private boolean strike(int inicioDoFrame) {
+        return jogadas[inicioDoFrame] == PINOS;
+    }
+
     private boolean spare(int inicioDoFrame) {
-        return jogadas[inicioDoFrame] + jogadas[inicioDoFrame + 1] == 10;
+        return somaDoFrame(inicioDoFrame) == PINOS;
+    }
+
+    private int somaDoFrame(int inicioDoFrame) {
+        return jogadas[inicioDoFrame] + jogadas[inicioDoFrame + 1];
+    }
+
+    private int bonusDoStrike(int inicioDoFrame) {
+        return jogadas[inicioDoFrame + 1] + jogadas[inicioDoFrame + 2];
+    }
+
+    private int bonusDoSpare(int inicioDoFrame) {
+        return jogadas[inicioDoFrame + 2];
     }
 }
