@@ -127,4 +127,10 @@ class JogoTest {
         jogo.jogar(4);
         assertTrue(jogo.encerrado());
     }
+
+    @Test
+    void jogadaDepoisDoFimDaPartidaLancaExcecao() {
+        jogarVarias(20, 0);
+        assertThrows(IllegalStateException.class, () -> jogo.jogar(0));
+    }
 }
