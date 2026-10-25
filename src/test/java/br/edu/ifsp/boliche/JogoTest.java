@@ -32,10 +32,14 @@ class JogoTest {
         assertEquals(20, jogo.pontuacao());
     }
 
+    private void jogarSpare() {
+        jogo.jogar(5);
+        jogo.jogar(5);
+    }
+
     @Test
     void spareValeDezMaisAProximaJogada() {
-        jogo.jogar(5);
-        jogo.jogar(5);
+        jogarSpare();
         jogo.jogar(3);
         jogarVarias(17, 0);
         assertEquals(16, jogo.pontuacao());

@@ -11,15 +11,19 @@ public class Jogo {
 
     public int pontuacao() {
         int pontos = 0;
-        int i = 0;
+        int inicioDoFrame = 0;
         for (int frame = 0; frame < 10; frame++) {
-            if (jogadas[i] + jogadas[i + 1] == 10) {
-                pontos += 10 + jogadas[i + 2];
+            if (spare(inicioDoFrame)) {
+                pontos += 10 + jogadas[inicioDoFrame + 2];
             } else {
-                pontos += jogadas[i] + jogadas[i + 1];
+                pontos += jogadas[inicioDoFrame] + jogadas[inicioDoFrame + 1];
             }
-            i += 2;
+            inicioDoFrame += 2;
         }
         return pontos;
+    }
+
+    private boolean spare(int inicioDoFrame) {
+        return jogadas[inicioDoFrame] + jogadas[inicioDoFrame + 1] == 10;
     }
 }
