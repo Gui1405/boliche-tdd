@@ -9,6 +9,9 @@ public class Jogo {
     private int atual;
 
     public void jogar(int pinos) {
+        if (pinos < 0) {
+            throw new IllegalArgumentException("Jogada inválida: " + pinos + " pinos");
+        }
         jogadas[atual++] = pinos;
     }
 
