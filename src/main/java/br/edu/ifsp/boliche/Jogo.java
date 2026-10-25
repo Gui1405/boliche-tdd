@@ -7,6 +7,7 @@ public class Jogo {
 
     private final int[] jogadas = new int[21];
     private int atual;
+    private int frame = 1;
     private int pinosNoFrame;
     private int jogadasNoFrame;
 
@@ -30,8 +31,13 @@ public class Jogo {
     }
 
     private void proximoFrame() {
+        frame++;
         pinosNoFrame = 0;
         jogadasNoFrame = 0;
+    }
+
+    public boolean encerrado() {
+        return frame > FRAMES;
     }
 
     public int pontuacao() {
