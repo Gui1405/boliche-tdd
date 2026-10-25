@@ -37,7 +37,7 @@ public class Jogo {
     }
 
     public boolean encerrado() {
-        return frame == FRAMES && (jogadasNoFrame == 3 || jogadasNoFrame == 2 && pinosNoFrame != PINOS);
+        return frame == FRAMES && (jogadasNoFrame == 3 || jogadasNoFrame == 2 && pinosNoFrame < PINOS);
     }
 
     public int pontuacao() {
