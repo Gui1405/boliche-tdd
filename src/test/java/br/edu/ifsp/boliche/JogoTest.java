@@ -57,4 +57,10 @@ class JogoTest {
         jogarVarias(16, 0);
         assertEquals(24, jogo.pontuacao());
     }
+
+    @Test
+    void spareEmTodosOsFramesVale150() {
+        jogarVarias(21, 5);
+        assertEquals(150, jogo.pontuacao());
+    }
 }
