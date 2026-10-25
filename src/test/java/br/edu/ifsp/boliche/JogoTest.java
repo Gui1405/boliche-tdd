@@ -129,6 +129,14 @@ class JogoTest {
     }
 
     @Test
+    void jogoPerfeitoTerminaNaDecimaSegundaJogada() {
+        jogarVarias(11, 10);
+        assertFalse(jogo.encerrado());
+        jogarStrike();
+        assertTrue(jogo.encerrado());
+    }
+
+    @Test
     void jogadaDepoisDoFimDaPartidaLancaExcecao() {
         jogarVarias(20, 0);
         assertThrows(IllegalStateException.class, () -> jogo.jogar(0));
