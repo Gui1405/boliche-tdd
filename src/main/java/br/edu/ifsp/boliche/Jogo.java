@@ -4,43 +4,22 @@ public class Jogo {
 
     private static final int PINOS = 10;
     private static final int FRAMES = 10;
+    private static final int MAXIMO_DE_JOGADAS = 21;
 
-    private final int[] jogadas = new int[21];
-    private int atual;
-    private int frame = 1;
+    private final int[] jogadas = new int[MAXIMO_DE_JOGADAS];
+    private int totalDeJogadas;
+    private int frameAtual = 1;
     private int pinosNoFrame;
     private int jogadasNoFrame;
 
     public void jogar(int pinos) {
         validar(pinos);
-        jogadas[atual++] = pinos;
+        jogadas[totalDeJogadas++] = pinos;
         pinosNoFrame += pinos;
         jogadasNoFrame++;
-        if (frame < FRAMES && (pinosNoFrame == PINOS || jogadasNoFrame == 2)) {
+        if (frameAtual < FRAMES && (pinosNoFrame == PINOS || jogadasNoFrame == 2)) {
             proximoFrame();
         }
-    }
-
-    private void validar(int pinos) {
-        if (encerrado()) {
-            throw new IllegalStateException("A partida já terminou");
-        }
-        if (pinos < 0 || pinos > PINOS) {
-            throw new IllegalArgumentException("Jogada inválida: " + pinos + " pinos");
-        }
-        if (frame < FRAMES && pinosNoFrame + pinos > PINOS) {
-            throw new IllegalArgumentException("O frame passaria de " + PINOS + " pinos");
-        }
-    }
-
-    private void proximoFrame() {
-        frame++;
-        pinosNoFrame = 0;
-        jogadasNoFrame = 0;
-    }
-
-    public boolean encerrado() {
-        return frame == FRAMES && (jogadasNoFrame == 3 || jogadasNoFrame == 2 && pinosNoFrame < PINOS);
     }
 
     public int pontuacao() {
@@ -59,6 +38,31 @@ public class Jogo {
             }
         }
         return pontos;
+    }
+
+    public boolean encerrado() {
+        if (frameAtual < FRAMES) {
+            return false;
+        }
+        return jogadasNoFrame == 3 || jogadasNoFrame == 2 && pinosNoFrame < PINOS;
+    }
+
+    private void validar(int pinos) {
+        if (encerrado()) {
+            throw new IllegalStateException("A partida já terminou");
+        }
+        if (pinos < 0 || pinos > PINOS) {
+            throw new IllegalArgumentException("Jogada inválida: " + pinos + " pinos");
+        }
+        if (frameAtual < FRAMES && pinosNoFrame + pinos > PINOS) {
+            throw new IllegalArgumentException("O frame " + frameAtual + " passaria de " + PINOS + " pinos");
+        }
+    }
+
+    private void proximoFrame() {
+        frameAtual++;
+        pinosNoFrame = 0;
+        jogadasNoFrame = 0;
     }
 
     private boolean strike(int inicioDoFrame) {
