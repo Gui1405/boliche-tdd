@@ -5,7 +5,7 @@ public class Jogo {
     private static final int PINOS = 10;
     private static final int FRAMES = 10;
 
-    private final int[] jogadas = new int[20];
+    private final int[] jogadas = new int[21];
     private int atual;
 
     public void jogar(int pinos) {
