@@ -69,4 +69,12 @@ class JogoTest {
         jogarVarias(12, 10);
         assertEquals(300, jogo.pontuacao());
     }
+
+    @Test
+    void partidaMistaVale167() {
+        for (int pinos : new int[] { 10, 7, 3, 9, 0, 10, 0, 8, 8, 2, 0, 6, 10, 10, 10, 8, 1 }) {
+            jogo.jogar(pinos);
+        }
+        assertEquals(167, jogo.pontuacao());
+    }
 }
