@@ -2,25 +2,33 @@ package br.edu.ifsp.boliche;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class JogoTest {
 
+    private Jogo jogo;
+
+    @BeforeEach
+    void novoJogo() {
+        jogo = new Jogo();
+    }
+
+    private void jogarVarias(int vezes, int pinos) {
+        for (int i = 0; i < vezes; i++) {
+            jogo.jogar(pinos);
+        }
+    }
+
     @Test
     void nenhumPinoValeZero() {
-        Jogo jogo = new Jogo();
-        for (int i = 0; i < 20; i++) {
-            jogo.jogar(0);
-        }
+        jogarVarias(20, 0);
         assertEquals(0, jogo.pontuacao());
     }
 
     @Test
     void umPinoPorJogadaValeVinte() {
-        Jogo jogo = new Jogo();
-        for (int i = 0; i < 20; i++) {
-            jogo.jogar(1);
-        }
+        jogarVarias(20, 1);
         assertEquals(20, jogo.pontuacao());
     }
 }
