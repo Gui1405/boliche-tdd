@@ -108,4 +108,13 @@ class JogoTest {
         jogo.jogar(0);
         assertTrue(jogo.encerrado());
     }
+
+    @Test
+    void spareNoDecimoFrameDaDireitoAUmaJogadaExtra() {
+        jogarVarias(18, 0);
+        jogarSpare();
+        assertFalse(jogo.encerrado());
+        jogo.jogar(3);
+        assertTrue(jogo.encerrado());
+    }
 }
