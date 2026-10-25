@@ -16,7 +16,7 @@ public class Jogo {
         jogadas[atual++] = pinos;
         pinosNoFrame += pinos;
         jogadasNoFrame++;
-        if (pinosNoFrame == PINOS || jogadasNoFrame == 2) {
+        if (frame < FRAMES && (pinosNoFrame == PINOS || jogadasNoFrame == 2)) {
             proximoFrame();
         }
     }
@@ -25,7 +25,7 @@ public class Jogo {
         if (pinos < 0 || pinos > PINOS) {
             throw new IllegalArgumentException("Jogada inválida: " + pinos + " pinos");
         }
-        if (pinosNoFrame + pinos > PINOS) {
+        if (frame < FRAMES && pinosNoFrame + pinos > PINOS) {
             throw new IllegalArgumentException("O frame passaria de " + PINOS + " pinos");
         }
     }
@@ -37,7 +37,7 @@ public class Jogo {
     }
 
     public boolean encerrado() {
-        return frame > FRAMES;
+        return frame == FRAMES && (jogadasNoFrame == 3 || jogadasNoFrame == 2 && pinosNoFrame != PINOS);
     }
 
     public int pontuacao() {
